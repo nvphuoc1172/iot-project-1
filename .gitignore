@@ -1,0 +1,92 @@
+# ==========================================
+# 1. NODE.JS / JAVASCRIPT
+# ==========================================
+# Thư mục phụ thuộc (rất nặng, không nên push)
+node_modules/
+jspm_packages/
+
+# Các file log lỗi hệ thống
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# File biến môi trường chứa thông tin bảo mật (API Key, Mật khẩu)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+# ==========================================
+# 2. PYTHON
+# ==========================================
+# Thư mục cache biên dịch tự động của Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Thư mục môi trường ảo (Virtual Environments)
+venv/
+.venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# ==========================================
+# 3. ARDUINO & ESP32 / EMBEDDED SYSTEMS
+# ==========================================
+# Thư mục build của Arduino IDE 2.x và các toolchain liên quan
+build/
+bin/
+
+# File tạm và file cấu hình cục bộ của Arduino
+.build/
+*.local.properties
+
+# Thư mục build của PlatformIO (Nếu bạn dùng PlatformIO trên VS Code)
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Thư mục build của ESP-IDF (Dùng cho ESP32 chuyên sâu)
+managed_components/
+sdkconfig.old
+
+# Các định dạng file sau khi biên dịch để nạp vào mạch (Không cần quản lý mã nguồn)
+*.hex
+*.bin
+*.elf
+*.eep
+*.map
+
+
+# ==========================================
+# 4. HỆ ĐIỀU HÀNH & TRÌNH SOẠN THẢO
+# ==========================================
+# Linux (File tạm, file ẩn hệ thống và các liên kết bị hỏng)
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Windows
+Thumbs.db
+db.properties
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code (Thư mục cấu hình cá nhân của trình soạn thảo)
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
