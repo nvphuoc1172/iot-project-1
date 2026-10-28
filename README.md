@@ -11,4 +11,6 @@ Hai phương án trong README cũ đã được tách thành hai bản thuyết 
 
 Hai đề tài mới theo cùng mẫu: [Smart Waste Bin System](04_SMART_WASTE_BIN_SYSTEM.MD) và [Smart Parking System](05_SMART_PARKING_SYSTEM.MD). Mỗi bản có nguồn mã tham khảo, đối chiếu yêu cầu trong hai PDF, dự toán và lịch theo quỹ 72–108 giờ công của ba thành viên.
 
+[Child Routine Monitoring System](06_CHILD_ROUTINE_MONITORING_SYSTEM.MD) là bản khảo sát ý tưởng nhắc lịch và giám sát môi trường phòng trẻ; đánh giá riêng quỹ 27–54 giờ công trong 3 tuần.
+
 Cả hai tham chiếu [Yêu cầu thuyết minh](<docs/CQ_YÊU CẦU THUYẾT MINH DỰ ÁN.pdf>) và [Quy định đồ án cuối kỳ](<docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>). Tên A, B, C và lịch Tuần 1–4 là thông tin tạm để nhóm cập nhật trước khi nộp.
