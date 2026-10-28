@@ -4,7 +4,7 @@
 **Trường/Khoa/Lớp/Nhóm:** Nhóm bổ sung trước khi nộp  
 **Thành viên tạm:** A, B, C  
 **Hình thức:** Sản phẩm thật, mô hình điện áp thấp  
-**Thời gian:** 4 tuần; mỗi thành viên 3 buổi/tuần, 2–3 giờ/buổi (tăng thêm 1 giờ/ngày so với mức 1–2 giờ/ngày trước đó).
+**Thời gian:** 5 tuần; mỗi thành viên 3 buổi/tuần, 2–3 giờ/buổi. Bản tối đa điểm nâng cao thay thế mốc 4 tuần trước.
 
 Bản này theo [Yêu cầu thuyết minh dự án](<docs/CQ_YÊU CẦU THUYẾT MINH DỰ ÁN.pdf>) và [Quy định đồ án cuối kỳ](<docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>). Đây là phương án **ưu tiên theo quỹ thời gian**, chưa phải bản PDF nộp chính thức: cần bổ sung bìa, thông tin thành viên, ảnh 3D ngoài/trong, ảnh linh kiện và định dạng PDF theo quy định. Vì các chức năng đã cam kết trong thuyết minh chỉ được đổi tối đa một chức năng, nhóm nên xác nhận phạm vi trước khi nộp.
 
@@ -25,37 +25,43 @@ Một ESP32 giám sát nhiệt độ/độ ẩm và chuyển động trong phòn
 | F05 | Nâng cao #4, 1,5 điểm | Firebase RTDB | Backend lưu bản ghi DHT11/PIR và sự kiện LED theo thời gian. | A |
 | F06 | Nâng cao #10, 2,0 điểm | Website tự xây | Tự xây backend/frontend, trang số đo, nút LED, trạng thái kết nối; không dùng Node-RED. | B |
 | F07 | Nâng cao #6, 1,0 điểm | Telegram Bot | Backend gửi thông báo nhanh khi PIR báo chuyển động lúc bật chế độ canh gác, có chặn lặp. | C |
+| F08 | Nâng cao #9, 1,5 điểm | SQLite tài khoản | A làm đăng ký/đăng nhập, băm mật khẩu và bảo vệ nút LED cùng trang lịch sử. | A |
+| F09 | Nâng cao #12, 1,0 điểm | WiFiManager, sản phẩm thật | A cho phép nhập WiFi mới từ cổng cấu hình ESP32, kiểm tra kết nối lại MQTT. | A |
+| F10 | Nâng cao #5, 1,5 điểm | Firebase RTDB | B đọc dữ liệu theo thời gian từ cloud F05 qua backend và vẽ chart trên website. | B |
+| F11 | Nâng cao #8, 0,5 điểm | Chatbot luật điều kiện | B cho ô chat trả lời số đo/trạng thái mới nhất từ backend theo câu hỏi định sẵn. | B |
+| F12 | Nâng cao #2, 1,5 điểm | Nút nhấn riêng → web | C đọc nút xác nhận phòng đã kiểm tra → ESP32 → MQTT → backend → frontend, hiện thời điểm. | C |
 
-**Đối chiếu thiết bị:** F01 = DHT11, F02 = PIR, F03 = LED xanh, F04 = CDS và buzzer. Năm thiết bị input/output vật lý này **đôi một khác nhau**. F05–F07 là dịch vụ/chức năng phần mềm dùng dữ liệu có sẵn, không đăng ký thêm luồng thiết bị. F04 có đúng một người thực hiện. ESP32 là board trung gian, không tính như thiết bị input/output. Phương án dùng sản phẩm thật nên quy tắc thay thế thiết bị trong giả lập không áp dụng. Việc cloud/thông báo dùng lại dữ liệu F01/F02 cần được giảng viên xác nhận nếu quy định “thiết bị khác nhau” được hiểu bao gồm cả dữ liệu thứ cấp.
+**Đối chiếu thiết bị:** F01 = DHT11, F02 = PIR, F03 = LED xanh, F04 = CDS **và** buzzer, F12 = nút nhấn riêng. Sáu thiết bị input/output vật lý này **đôi một khác nhau**. F05–F11 là dịch vụ/chức năng phần mềm, không đăng ký thêm luồng thiết bị; mỗi yêu cầu nâng cao có đúng một chủ sở hữu. ESP32 là board trung gian. Sản phẩm thật nên quy tắc thay thế trong giả lập không áp dụng. Cần xác nhận với giảng viên nếu quy định “thiết bị khác nhau” được hiểu bao gồm cả việc các dịch vụ cloud/chart/thông báo dùng lại dữ liệu cảm biến.
 
 ## 2. Thiết kế
 
 ### 2.1. Bố trí ngoài và trong
 
-Mặt hộp có lỗ thoáng cho DHT11, cửa sổ hướng nhìn của PIR, lỗ ánh sáng cho CDS, LED và lỗ âm của buzzer. ESP32, dây tín hiệu và đầu nối đặt trong hộp; nguồn USB 5V cấp qua cổng của board. Không điều khiển tải điện lưới. DHT11 tránh gần nguồn nhiệt; PIR hướng về vùng cửa, CDS tránh bị LED F03 chiếu trực tiếp.
+Mặt hộp có lỗ thoáng cho DHT11, cửa sổ hướng nhìn của PIR, lỗ ánh sáng cho CDS, LED, nút xác nhận F12 và lỗ âm của buzzer. ESP32, dây tín hiệu và đầu nối đặt trong hộp; nguồn USB 5V cấp qua cổng của board. Không điều khiển tải điện lưới. DHT11 tránh gần nguồn nhiệt; PIR hướng về vùng cửa, CDS tránh bị LED F03 chiếu trực tiếp.
 
 ```text
-Mặt ngoài: [DHT11 F01] [PIR F02] [CDS F04] [LED xanh F03] [buzzer F04]
+Mặt ngoài: [DHT11 F01] [PIR F02] [CDS F04] [LED xanh F03] [buzzer F04] [nút F12]
 Mặt trong: [ESP32] [dây + điện trở LED] [đầu nối] [cổng USB cấp nguồn]
 ```
 
-Trước khi xuất PDF: dựng **hai hình 3D ngoài/trong** và đánh dấu từng vị trí F01–F04; đây là đầu ra của Tuần 4, chưa có trong bản khảo sát này.
+Trước khi xuất PDF: dựng **hai hình 3D ngoài/trong** và đánh dấu từng vị trí F01–F04 và F12; đây là đầu ra của Tuần 5, chưa có trong bản khảo sát này.
 
 ### 2.2. Wireframe website
 
 ```text
 ┌──────────────────────────────────────────────────────────┐
-│ GIÁM SÁT PHÒNG HỌC | ESP32/MQTT online hay offline       │
+│ GIÁM SÁT PHÒNG HỌC | ESP32/MQTT online/offline | F08     │
 ├─────────────────────────────┬────────────────────────────┤
 │ Nhiệt độ/độ ẩm F01         │ Chuyển động F02            │
 │ Cập nhật lần cuối           │ Cập nhật lần cuối          │
 ├─────────────────────────────┴────────────────────────────┤
 │ Bật/tắt LED F03 | Bật/tắt chế độ canh gác cho F07       │
-│ Lịch sử F05; trạng thái thông báo F07                    │
+│ Lịch sử F05; biểu đồ cloud F10; thông báo F07            │
+│ Nút xác nhận F12 và thời điểm; ô chat điều kiện F11       │
 └──────────────────────────────────────────────────────────┘
 ```
 
-Website F06 chỉ có các vùng liên quan đến F01–F03, F05 và F07. Chế độ canh gác là thiết lập phần mềm của cảnh báo F07, không thêm một thiết bị output.
+Website F06 có vùng F01–F03, F05, F07–F08 và F10–F12. Chế độ canh gác là thiết lập phần mềm của cảnh báo F07, không thêm một thiết bị output.
 
 ### 2.3. Sơ đồ dữ liệu chung
 
@@ -75,9 +81,16 @@ flowchart LR
   ESP -->|MQTT: room/led/state| MQ
   BE -->|bản ghi có thời gian F05| DB["Firebase RTDB"]
   BE -->|cảnh báo F07| TG["Telegram"]
+  BTN["Nút xác nhận F12"] --> ESP
+  BE --> AUTH["SQLite tài khoản F08"]
+  DB -->|đọc F10| BE
+  BE -->|chart/chat F10/F11| FE
+  PHONE["Điện thoại cấu hình WiFi F09"] --> ESP
 ```
 
 MQTT chỉ truyền dữ liệu qua backend trước khi đến frontend. ESP32 công bố trạng thái LED thực sau lệnh để phân biệt lệnh gửi và tác động đã xảy ra. Khi broker mất kết nối, còi F04 vẫn chạy nội bộ; website hiển thị trạng thái mất kết nối.
+
+F09 cấu hình WiFi tại ESP32 thật; F08 bảo vệ website, F10 hiển thị chart lấy từ Firebase, F11 trả lời theo luật điều kiện. Nút F12, mục xác nhận, chart và chat đã có trong bản phác thảo; khi xuất PDF tô màu/mẫu mũi tên theo từng luồng.
 
 ### 2.4. Một số dự án ESP32 có mã nguồn đã khảo sát
 
@@ -111,7 +124,8 @@ Giá tham khảo tra ngày **28/10/2026**, đơn vị VND. Link sản phẩm có
 | 6 | Buzzer 5VDC | 1 | 15.000 | 15.000 | **Ước tính**, [mẫu tham khảo](https://hshop.vn/coi-buzzer-5vdc) | F04 |
 | 7 | Adapter 5V 2A | 1 | 30.000 | 30.000 | [Linh Kiện Việt Nam](https://linhkienvietnam.vn/nguon-adapter-5v-2a-5v2a-kho-b-ka9h14); cần dây/đầu USB phù hợp | F01–F04 |
 | 8 | Hộp, dây, breadboard hoặc PCB đục lỗ | 1 bộ | 60.000 | 60.000 | **Ước tính**, chọn kích thước sau khi bố trí | F01–F04 |
-| | **Tổng tham khảo** | | | **322.000** | Chưa gồm vận chuyển, công cụ và dịch vụ | |
+| 9 | Nút nhấn F12 | 1 | 5.000 | 5.000 | **Ước tính**, [nhóm sản phẩm Hshop](https://hshop.vn/dieu-khien-ban-phim-joystick) | F12 |
+| | **Tổng tham khảo** | | | **327.000** | Chưa gồm vận chuyển, công cụ và dịch vụ | |
 
 Firebase và Telegram dự kiến dùng mức miễn phí nếu phù hợp hạn mức thực tế. Không cấp trực tiếp buzzer/LED vượt khả năng GPIO; kiểm tra dòng, điện trở và driver theo linh kiện mua được.
 
@@ -131,7 +145,17 @@ Giả định mỗi người tăng thêm một giờ so với mức 1–2 giờ/
 | 4 | F01–F07 | Tích hợp, kiểm thử toàn luồng, đóng hộp, ảnh 3D, ảnh linh kiện, thuyết minh/PDF, tập vấn đáp | A điều phối; B/C cùng làm | 10–14 |
 | | | **Tổng ước tính** | | **45–63** |
 
-**Kết luận khả thi:** F01–F07 cần **45–63 giờ-người**, thấp hơn quỹ mới **72–108 giờ-người**; còn khoảng **9–63 giờ-người** để xử lý lỗi, hoàn thiện mô hình và tập vấn đáp. Ở mức giữa 90 giờ, dự phòng là 27–45 giờ, nên phương án phòng học có khả năng hoàn thành trong 4 tuần nếu mua linh kiện ở Tuần 1. Đây là ước lượng, chưa phải thời gian đã đo khi triển khai. Quỹ mới cho phép **xem xét** thêm yêu cầu nâng cao để cải thiện điểm, nhưng phải chọn và ước giờ trước khi nộp thuyết minh; sau đó PDF chỉ cho điều chỉnh tối đa một chức năng. Bảng F01–F07 hiện chưa đạt 4 điểm nâng cao/người. Nếu muốn cả ba người đạt mức đó, cần lập phiên bản chức năng và dự toán mới; không tự động coi thời gian dự phòng là đủ cho các chức năng chưa định nghĩa.
+**Phạm vi nền F01–F07** cần 45–63 giờ-người theo bảng trên. Các dòng tích hợp của Tuần 4 được chuyển sang Tuần 5 khi thêm F08–F12; đây là ước lượng công việc, không phải giờ đã đo thực tế.
+
+**Kế hoạch nâng cao để đạt trần dự kiến:** F08 đăng nhập 7–10 giờ (A), F09 WiFiManager 4–6 giờ (A), F10 chart cloud 5–7 giờ (B), F11 chatbot luật 2–3 giờ (B), F12 nút → web 4–6 giờ (C); tích hợp và vấn đáp thêm 4–6 giờ. Tổng mới **71–101 giờ-người**. Quỹ 4 tuần 72–108 giờ chỉ đủ ở phía thuận lợi; để có dự phòng, kéo sang **5 tuần = 90–135 giờ-người**. Tuần 4 làm F08/F09/F10/F12, Tuần 5 làm F11 và kiểm thử toàn hệ thống/PDF. Bảng tuần 1–4 phía trên là lịch nền của F01–F07; mốc tích hợp cuối cùng chuyển sang Tuần 5.
+
+| Tuần mở rộng | ID | Chủ sở hữu | Giờ | Đầu ra kiểm chứng |
+|---|---|---|---:|---|
+| 4 | F08, F09 | A | 11–16 | Đăng nhập có băm mật khẩu; cấu hình lại WiFi và MQTT |
+| 4 | F10 | B | 5–7 | Chart đọc bản ghi Firebase qua backend |
+| 5 | F11 | B | 2–3 | Chatbot trả lời theo luật và dữ liệu mới nhất |
+| 4 | F12 | C | 4–6 | Nút riêng hiện thời điểm trên web qua MQTT |
+| 5 | F01–F12 | Cả nhóm | 4–6 tăng thêm | Kiểm thử tích hợp và vấn đáp, ngoài giờ tích hợp nền đã chuyển sang Tuần 5 |
 
 ## 4. Tổng kết và phân chia công việc
 
@@ -139,8 +163,8 @@ Theo C.1 của [Quy định đồ án cuối kỳ](<docs/CQ_QUY ĐỊNH ĐỒ 
 
 | Thành viên | ID và phần bàn giao chính | Căn bản gồm nhóm | Nâng cao | Tổng tạm tính chưa gồm báo cáo |
 |---|---|---:|---:|---:|
-| A | F01 firmware/backend DHT11; F05 lưu cloud | 5,0 | 1,5 | 6,5 |
-| B | F02 PIR; F06 website tự xây | 5,0 | 2,0 | 7,0 |
-| C | F03 LED; F04 CDS → buzzer; F07 Telegram | 5,0 | 2,5 | 7,5 |
+| A | F01; F05 cloud 1,5 + F08 bảo mật 1,5 + F09 WiFi 1,0 | 5,0 | 4,0 | 9,0 |
+| B | F02; F06 web 2,0 + F10 chart cloud 1,5 + F11 chatbot 0,5 | 5,0 | 4,0 | 9,0 |
+| C | F03; F04 CDS → buzzer 1,5 + F07 Telegram 1,0 + F12 nút → web 1,5 | 5,0 | 4,0 | 9,0 |
 
-**Rà soát trước nộp:** xác nhận cách chấm dữ liệu F05/F07; đo giờ thực tế nhóm có thể làm; kiểm tra năm thiết bị F01–F04 không trùng; thử mọi luồng qua MQTT/backend/frontend; chèn ảnh 3D ngoài/trong, ảnh linh kiện có ID, màu mũi tên phân biệt trong sơ đồ; điền bìa và xuất PDF đúng tên `MANHOM_MSSV1_MSSV2_MSSV3_PROPOSAL.PDF`, Times New Roman 13, giãn dòng 1,15, canh đều.
+**Rà soát trước nộp:** xác nhận cách chấm dữ liệu F05/F07/F10; đo giờ thực tế nhóm có thể làm; kiểm tra sáu thiết bị của F01–F04/F12 không trùng; thử mọi luồng qua MQTT/backend/frontend; chèn ảnh 3D ngoài/trong, ảnh linh kiện có ID, màu mũi tên phân biệt trong sơ đồ; điền bìa và xuất PDF đúng tên `MANHOM_MSSV1_MSSV2_MSSV3_PROPOSAL.PDF`, Times New Roman 13, giãn dòng 1,15, canh đều.
