@@ -2,7 +2,7 @@
 
 ### Thành phần cơ bản của một commit message:
 
-Một cấu trúc commit chuẩn thường gồm 3 phần chính: 
+Một cấu trúc commit chuẩn thường gồm 3 phần chính:
 
 * **Type (loại commit):** Mô tả thay đổi (fix, feat, docs)
 * **Scope (Phạm vi)**: Phần nào của dự án bị ảnh hưởng (frontend, backend, API, v.v.).
@@ -20,7 +20,7 @@ type(scope): description
 []: Các trường tùy chọn
 ```
 
-Ví dụ: 
+Ví dụ:
 
 ```
 feat(auth): add login with Google OAuth
@@ -35,8 +35,6 @@ Closes #123
 #123
 
 ### Các loại commit phổ biến
-
-
 
 | Type         | Ý Nghĩa                                                         | Ví Dụ                                     |
 | ------------ | ----------------------------------------------------------------- | ------------------------------------------- |
