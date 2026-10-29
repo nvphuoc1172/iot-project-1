@@ -6,7 +6,7 @@
 **Hình thức:** <Sản phẩm thật/Giả lập>  
 **Thời gian dự kiến:** Tuần <...> đến tuần <...> (<3 hoặc 4 tuần>)
 
-> Lưu file theo mẫu `SỐ-TT_TÊN_TIẾNG_ANH_CỦA_DỰ_ÁN.MD`, ví dụ `03_SMART_PARKING_SYSTEM.MD`. Khi hoàn tất, xuất PDF theo [Yêu cầu thuyết minh dự án](<docs/CQ_YÊU CẦU THUYẾT MINH DỰ ÁN.pdf>) và đối chiếu [Quy định đồ án cuối kỳ](<docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>). Thay toàn bộ nội dung trong `<...>` và xóa các dòng hướng dẫn trước khi nộp.
+> Lưu file theo mẫu `SỐ-TT_TÊN_TIẾNG_ANH_CỦA_DỰ_ÁN.MD`, ví dụ `03_SMART_PARKING_SYSTEM.MD`. Khi hoàn tất, xuất PDF theo [Yêu cầu thuyết minh dự án](<../docs/CQ_YÊU CẦU THUYẾT MINH DỰ ÁN.pdf>) và đối chiếu [Quy định đồ án cuối kỳ](<../docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>). Thay toàn bộ nội dung trong `<...>` và xóa các dòng hướng dẫn trước khi nộp.
 
 ## 1. Giới thiệu
 
@@ -110,7 +110,7 @@ flowchart LR
 
 ## 4. Tổng kết và phân chia công việc
 
-Theo mục **C.1 — Yêu cầu căn bản** của [Quy định đồ án cuối kỳ](<docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>), mỗi sinh viên thực hiện một luồng input → ESP → MQTT → web backend → web frontend **hoặc** web frontend → web backend → MQTT → ESP → output; các thiết bị của những yêu cầu khác nhau phải đôi một khác nhau. Điểm dự kiến cho mỗi người khi đạt đủ điều kiện: **4,0 điểm chức năng căn bản + 1,0 điểm làm việc nhóm** (mã được tích hợp trong một project).
+Theo mục **C.1 — Yêu cầu căn bản** của [Quy định đồ án cuối kỳ](<../docs/CQ_QUY ĐỊNH ĐỒ ÁN CUỐI KỲ.pdf>), mỗi sinh viên thực hiện một luồng input → ESP → MQTT → web backend → web frontend **hoặc** web frontend → web backend → MQTT → ESP → output; các thiết bị của những yêu cầu khác nhau phải đôi một khác nhau. Điểm dự kiến cho mỗi người khi đạt đủ điều kiện: **4,0 điểm chức năng căn bản + 1,0 điểm làm việc nhóm** (mã được tích hợp trong một project).
 
 Theo mục **C.2 — Yêu cầu nâng cao**, chọn các mục và điểm chính xác từ PDF, mỗi mục chỉ giao **một** người/nhóm; tổng điểm nâng cao dự kiến **không quá 4,0 điểm/người**. <Ghi phép cộng theo ID: A = ...; B = ...; C = ...>. Điểm phụ thuộc sản phẩm và vấn đáp. Điểm báo cáo cuối kỳ và điểm cộng xét cho sản phẩm thật, nếu có, ghi riêng theo quy định; không cộng lẫn vào bảng này.
 
